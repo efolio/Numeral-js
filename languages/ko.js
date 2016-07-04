@@ -1,13 +1,13 @@
-/*! 
+/*!
  * numeral.js language configuration
- * language : portuguese (pt-pt)
- * author : Diogo Resende : https://github.com/dresende
+ * language : korean
+ * author : lukefly
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: ',',
+            decimal: '.'
         },
         abbreviations: {
             thousand: 'k',
@@ -16,10 +16,14 @@
             trillion: 't'
         },
         ordinal: function (number) {
-            return 'º';
+            var b = number % 10;
+            return (~~ (number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '€'
+            symbol: '\\'
         }
     };
 
@@ -29,7 +33,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pt-pt', language);
-        this.numeral.language('pt', language);
+        this.numeral.language('ko', language);
     }
 }());
